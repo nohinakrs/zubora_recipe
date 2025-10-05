@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+ .bg-custom-image {
+  /* 背景画像を相対パスで指定 */
+  background-image: url("zubora_recipe/zubora_recipe/app/assets/images/header_img.jpg");
+  
+  /* 2. 画像が繰り返されないように設定 */
+  background-repeat: no-repeat;
+  
+  /* 3. 画像が要素全体を覆うように拡大・縮小（推奨） */
+  background-size: cover;
+  
+  /* 4. 画像を中央に配置 */
+  background-position: center center;
+  
+}
