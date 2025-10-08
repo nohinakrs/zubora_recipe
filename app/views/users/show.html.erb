@@ -2,3 +2,26 @@
 <%= render 'recipes/list', user: @user%>
 
 <h1>Users#show</h1>
+<div class="col-md-8 offset-md-1">
+
+<h2>マイレシピ</h2>
+<table class="table table-hover table-inverse">
+    <thead>
+        <tr>
+            <th>レシピ名</th>
+            <th colspan="6"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @recipe.each do |recipe| %>
+        <tr>
+          <td><%= link_to user_path(recipe.user) do %>
+          <%= image_tag recipe.user.get_profile_image(100, 100) %>
+        <% end %></td>
+          <td><%= link_to recipe.recipe_name, recipe_path(recipe) %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+</div>
