@@ -55,7 +55,7 @@ class RecipesController < ApplicationController
   private
   
   def recipe_params
-    params.require(:recipe).permit(:recipe_name, :recipe)
+    params.require(:recipe).permit(:recipe_name, :recipe, :image)
   end
 
   def is_matching_login_user
