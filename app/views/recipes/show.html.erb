@@ -1,2 +1,16 @@
 <%= render 'list', user: @user%>
 <h1>Recipes#show</h1>
+<h2>レシピ一覧</h2>
+<table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th>レシピ名</th>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr><%= image_tag @recipe.get_image(100, 100) %></tr>
+  <tr><%= @recipe.recipe_name %></tr>
+  <tr><%= @recipe.recipe %></tr>
+  </tbody>
+</table>

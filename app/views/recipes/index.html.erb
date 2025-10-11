@@ -13,7 +13,7 @@
     <% @recipe.each do |recipe| %>
       <tr>
         <td><%= link_to user_path(recipe.user) do %>
-          <%= image_tag recipe.user.get_profile_image(100, 100) %>
+          <%= image_tag recipe.get_image(100, 100) %>
         <% end %></td>
         <td><%= link_to recipe.recipe_name, recipe_path(recipe), class:"book_3348" %></td>
       </tr>
