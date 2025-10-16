@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :admins
   root to: 'homes#top'
   devise_for :users
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+  sessions: "admin/sessions"
+}
 
   resources :recipes, only:[:edit, :create, :new, :index, :show, :update, :destroy]
   resources :users, only:[:edit, :show, :update]
