@@ -34,6 +34,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[6.1]
       # t.datetime :locked_at
       t.string :name
       t.text :introduction
+      t.boolean :is_deleted, default: false
 
       # Uncomment below if timestamps were not included in your original model.
      # t.timestamps null: false

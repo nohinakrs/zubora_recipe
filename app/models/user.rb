@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :recipe, dependent: :destroy
   validates :name, presence: true, uniqueness: true, length: { in: 2..20 }
-  validates :introduction, length: { in: 4..200 }
+  validates :introduction, length: { maximum: 100 }
   
   has_one_attached :profile_image
   def get_profile_image(width, height)
