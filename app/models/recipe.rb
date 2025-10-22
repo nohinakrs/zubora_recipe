@@ -12,4 +12,16 @@ class Recipe < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
+
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Recipe.where(recipe_name: content)
+    elsif method == 'forward'
+      Recipe.where('recipe_name LIKE ?', content+'%')
+    elsif method == 'backward'
+      Recipe.where('recipe_name LIKE ?', '%'+content)
+    else
+      Recipe.where('recipe_name LIKE ?', '%'+content+'%')
+    end
+  end
 end
