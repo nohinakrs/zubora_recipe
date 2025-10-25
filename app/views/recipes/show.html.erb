@@ -1,22 +1,27 @@
   <div class="row">
+    <div class="col-md-3">
     <%= render 'list', user: @user%>
-    <h2>レシピ一覧</h2>
-    <table class="table table-hover table-inverse">
-      <thead>
-        <tr>
-          <th>レシピ名</th>
-          <th colspan="3"></th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><%= image_tag @recipe.get_image(100, 100) %></tr>
-        <tr><%= @recipe.recipe_name %></tr>
-        <tr><%= @recipe.recipe %></tr>
-        <td><%= link_to "Edit", edit_recipe_path(@recipe), class:"btn btn-sm btn-success edit_book_3372" %></td>
-         <td><%= link_to "Destroy", recipe_path(@recipe), method: :delete, class:"btn btn-sm btn-danger destroy_book_3372", data: { confirm: "本当に消しますか?" } %></td>
-       </tbody>
-     </table>
-    <%= render "comments/index", recipe: @recipe %>
-    <%= render "comments/form", recipe: @recipe, comment: @comment %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>レシピ一覧</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>レシピ名</th>
+            <th colspan="3"></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><%= image_tag @recipe.get_image(100, 100) %></tr>
+          <tr><%= @recipe.recipe_name %></tr>
+          <tr><%= @recipe.recipe %></tr>
+          <td><%= link_to "Edit", edit_recipe_path(@recipe), class:"btn btn-sm btn-success edit_book_3372" %></td>
+          <td><%= link_to "Destroy", recipe_path(@recipe), method: :delete, class:"btn btn-sm btn-danger destroy_book_3372", data: { confirm: "本当に消しますか?" } %></td>
+        </tbody>
+      </table>
+      <%= render "comments/index", recipe: @recipe %>
+      <%= render "comments/form", recipe: @recipe, comment: @comment %>
+    </div>
   </div>
