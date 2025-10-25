@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
   has_one_attached :image
   belongs_to :user
+  has_many :comments
 
   validates :recipe_name, presence: true, uniqueness: true, length: { in: 1..20 }
   validates :recipe, presence: true, length: { in: 100..3000 }

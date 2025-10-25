@@ -1,28 +1,29 @@
 <div class="container">
   <div class="row">
-<%= render 'list', user: @user%>
-<div class="col-md-8 offset-md-1">
+    <%= render 'list', user: @user%>
+    <div class="col-md-8 offset-md-1">
 
-<h2>レシピ一覧</h2>
-<table class="table table-hover table-inverse">
-  <thead>
-    <tr>
-      <th>レシピ名</th>
-      <th colspan="3"></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @recipe.each do |recipe| %>
-      <tr>
-        <td><%= link_to user_path(recipe.user) do %>
-          <%= image_tag recipe.get_image(100, 100) %>
+      <h2>レシピ一覧</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>レシピ名</th>
+            <th colspan="3"></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recipe.each do |recipe| %>
+            <tr>
+              <td><%= link_to user_path(recipe.user) do %>
+                <%= image_tag recipe.get_image(100, 100) %>
+                <% end %>
+              </td>
+              <td><%= link_to recipe.recipe_name, recipe_path(recipe), class:"book_3348" %></td>
+            </tr>
           <% end %>
-        </td>
-        <td><%= link_to recipe.recipe_name, recipe_path(recipe), class:"book_3348" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-</div></div></div>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
