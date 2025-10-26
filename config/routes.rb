@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
+  devise_for :admin, skip: [:registrations, :password], controllers: {
+    sessions: 'admin/sessions'
+  }
+  #管理者権限を実装
+  namespace :admin do
+    get 'dashboards', to: 'dashboards#index'
+    resources :users, only: [:destroy] # ユーザー削除機能実装のため、ここを追加
+  end
+  #↑管理者ダッシュボードへのルート設定
+
  # devise_for :admins
   root to: 'homes#top'
   devise_for :users
-   devise_for :admin, skip: [:registrations, :passwords], controllers: {
-  sessions: "admin/sessions"
- }
 
   resources :recipes, only:[:edit, :create, :new, :index, :show, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
