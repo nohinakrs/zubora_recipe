@@ -49,11 +49,6 @@
         </div>
       </nav>
     </header>
-    <% if admin_signed_in? %>
-      <div class="text-right">
-        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-      </div>
-    <% end %>
     <%= flash[:notice] %>
     <div class="container px-5 px-sm-0">
       <div class="d-flex justify-content-center mb-2">
