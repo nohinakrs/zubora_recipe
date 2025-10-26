@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>ユーザー名</th>
+            <th colspan="3"></th>
+            <th>自己紹介</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @records.each do |records| %>
+            <tr>
+              <td><%= link_to user_path(records) do %>
+                <%= image_tag records.get_profile_image(100, 100) %>
+                <% end %>
+              </td>
+              <td><%= records.name %></td>
+              <td><%= records.introduction %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
