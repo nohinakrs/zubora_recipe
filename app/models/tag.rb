@@ -4,7 +4,7 @@ class Tag < ApplicationRecord
   
   scope :merge_recipes, -> (tags){ }
   
-  def self.search_books_for(content, method)
+  def self.search_recipes_for(content, method)
     
     if method == 'perfect'
       tags = Tag.where(name: content)
@@ -16,7 +16,8 @@ class Tag < ApplicationRecord
       tags = Tag.where('name LIKE ?', '%' + content + '%')
     end
     
-    return tags.inject(init = []) {|result, tag| result + tag.books}
+    return tags.inject(init = []) {|result, tag| result + tag.recipes}
     
   end
 end
+

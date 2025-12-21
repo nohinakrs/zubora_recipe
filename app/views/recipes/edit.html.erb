@@ -20,13 +20,17 @@
       </div>
       <div class="form-group">
         <p>レシピ名</p>
-        <%= f.text_field :recipe_name, class:"form-control book_title" %><br>
+        <%= f.text_field :recipe_name, class:"form-control recipe_title" %><br>
+      </div>
+      <div class="form-group">
+        <p>タグ</p>
+        <%= f.text_field :tag_names, class: 'form-control recipe_tag_name' %><br>
       </div>
       <div class="form-group">
         <p>レシピ内容</p>
-        <%= f.text_field :recipe, class:"form-control book_body" %>
+        <%= f.text_field :recipe, class:"form-control recipe_body" %>
       </div>
-      
+
       <div class="form-group">
         <%= f.submit "レシピ更新", class:"btn btn-success" %>
       </div>

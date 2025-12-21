@@ -2,12 +2,12 @@ class RecipesController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
 
   def index
-    @recipe = Recipe.all
+    @recipes = Recipe.all
     @user = current_user
   end
 
   def new
-    @newrecipe = Recipe.new
+    @recipe = Recipe.new
   end
 
   def edit
@@ -24,15 +24,16 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @newrecipe = Recipe.new(recipe_params)
+    @recipe = Recipe.new(recipe_params)
     @user = current_user
-    @newrecipe.user_id = current_user.id
-    if @newrecipe.save
+    @recipe.user_id = current_user.id
+    
+    if @recipe.save
       flash[:notice] = "You have created book successfully."
-      redirect_to recipe_path(@newrecipe.id)
+      redirect_to recipe_path(@recipe.id)
     else
-      @recipes = recipe.all
-      render :index
+      @recipes = Recipe.all
+      render :new
     end
   end
 
@@ -56,7 +57,7 @@ class RecipesController < ApplicationController
   private
   
   def recipe_params
-    params.require(:recipe).permit(:recipe_name, :recipe, :image)
+    params.require(:recipe).permit(:recipe_name, :recipe, :image, :tag_names)
   end
 
   def is_matching_login_user
