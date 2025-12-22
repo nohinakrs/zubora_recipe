@@ -19,6 +19,8 @@ class Recipe < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
+    #下の記述は開発環境でサーバー立ち上げたての時、エラーを起こしやすいので、時間を置くこと。
+    #また、時間経過で治らない場合、末尾.processedを一旦コメントアウトしてから戻して対応すると治ります。
     image.variant(resize_to_limit: [width, height]).processed
   end
 
@@ -48,10 +50,11 @@ class Recipe < ApplicationRecord
 
   def save_tags
     if tag_names.present?
+      #.split(',')でタグ１つの範囲区切りの仕方を設定。.map{ |o| o.strip }で前後の半角を削除しています。
       tag_list = tag_names&.split(',')&.map{ |o| o.strip }
       # 現在のユーザーの持っているskillを引っ張ってきている
       current_tags = self.tags.pluck(:name) unless self.tags.nil?
-      # 今bookが持っているタグと今回保存されたものの差をすでにあるタグとする。古いタグは消す。
+      # 今持っているタグと今回保存されたものの差をすでにあるタグとする。古いタグは消す。
       old_tags = current_tags - tag_list
       # 今回保存されたものと現在の差を新しいタグとする。新しいタグは保存
       new_tags = tag_list - current_tags
