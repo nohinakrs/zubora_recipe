@@ -7,7 +7,7 @@
           <tr>
             <th>レシピ名</th>
             <th colspan="3"></th>
-            <th colspan="3"></th>
+            <th>タグ</th>
           </tr>
         </thead>
         <tbody>
@@ -18,6 +18,11 @@
                 <% end %>
               </td>
               <td><%= link_to recipe.recipe_name, recipe_path(recipe), class:"book_3348" %></td>
+              <td>
+                <% recipe.tags.each do |tag| %>
+                  <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
