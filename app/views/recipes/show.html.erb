@@ -23,8 +23,11 @@
           </tr>
           <tr><%= @recipe.recipe %></tr>
           <tr>コメント数: <%= @recipe.comments.count %></td>
+          <td><%= render "static_rate", recipe: @recipe %></td>
+          <% if @recipe.user == current_user %>
           <td><%= link_to "Edit", edit_recipe_path(@recipe), class:"btn btn-sm btn-success edit_book_3372" %></td>
-          <td><%= link_to "Destroy", recipe_path(@recipe), method: :delete, class:"btn btn-sm btn-danger destroy_book_3372", data: { confirm: "本当に消しますか?" } %></td>
+          <td><%= link_to "Destroy", recipe_path(@recipe), method: :delete, class:"btn btn-sm btn-danger destroy_book_3372", data: { confirm: "本当に消しますか?" } %></td>  
+          <% end %>
         </tbody>
       </table>
       <%= render "comments/index", recipe: @recipe %>
