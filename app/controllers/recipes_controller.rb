@@ -2,7 +2,16 @@ class RecipesController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.all.order(params[:sort])
+    if params[:latest]
+        @recipes = Recipe.latest
+      elsif params[:old]
+        @recipes = Recipe.old
+      elsif params[:star_count]
+        @recipes = Recipe.star_count
+      else
+        @recipes = Recipe.all
+    end
     @user = current_user
   end
 
@@ -29,7 +38,7 @@ class RecipesController < ApplicationController
     @recipe.user_id = current_user.id
     
     if @recipe.save
-      flash[:notice] = "You have created book successfully."
+      flash[:notice] = "レシピの保存を完了しました。"
       redirect_to recipe_path(@recipe.id)
     else
       @recipes = Recipe.all
@@ -40,7 +49,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
-     flash[:notice] = "You have updated book successfully."
+     flash[:notice] = "レシピの更新が完了しました。"
      redirect_to recipe_path(@recipe.id)
     else
       render "edit"

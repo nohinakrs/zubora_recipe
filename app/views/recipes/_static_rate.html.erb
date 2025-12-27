@@ -1,0 +1,17 @@
+<div id="rate_<%= recipe.id %>"></div>
+<script>
+$(document).on('turbolinks:load', function() {
+  let elem = document.querySelector('#rate_<%= recipe.id %>');
+  if (elem == null) return;
+  
+  elem.innerHTML = "";
+  let opt = {  
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: "<%= recipe.average_rating %>",
+    readOnly: true,
+  };
+  raty(elem, opt);
+});
+</script>

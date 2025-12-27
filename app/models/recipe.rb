@@ -6,6 +6,7 @@ class Recipe < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :recipe_tags, dependent: :destroy
   has_many :tags, through: :recipe_tags
+  has_many :recipe_rates, dependent: :destroy
 
   validates :recipe_name, presence: true, length: { in: 1..20 }
   validates :recipe, presence: true, length: { in: 100..3000 }
@@ -35,6 +36,18 @@ class Recipe < ApplicationRecord
       Recipe.where('recipe_name LIKE ?', '%'+content+'%')
     end
   end
+
+  #以下に星評価の平均値が入っている
+  def average_rating
+    return 0 if recipe_rates.count == 0
+
+    (recipe_rates.sum(:rate).to_f / recipe_rates.count).round(1)
+  end
+
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :star_count, -> { left_joins(:recipe_rates).group(:id).order("avg(recipe_rates.rate) desc") }
+
 
   private
 

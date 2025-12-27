@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   resources :recipes, only:[:edit, :create, :new, :index, :show, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
+    resources :recipe_rates, only: [:create]
   end
+
   resources :users, only:[:edit, :show, :update]
   get "about" => "homes#about", as: "about"
   # 検索機能のパス

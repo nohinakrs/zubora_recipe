@@ -1,14 +1,21 @@
-<div class="container">
+
   <div class="row">
-    <%= render 'list', user: @user%>
+    <div class="col-md-3">
+      <%= render 'list', user: @user%>
+    </div>
     <div class="col-md-8 offset-md-1">
 
       <table class="table table-hover table-inverse">
         <thead>
           <tr>
+            <th colspan="1"></th>
+            <th>タグ</th>
             <th>レシピ名</th>
-            <th colspan="3"></th>
-            <th colspan="3"></th>
+          </tr>
+          <tr>
+            <%= link_to '新しい順  ', recipes_path(latest: "true") %>
+            <%= link_to '古い順  ', recipes_path(old: "true") %>
+            <%= link_to '評価の高い順', recipes_path(star_count: "true") %>
           </tr>
         </thead>
         <tbody>
@@ -24,6 +31,7 @@
                 <% end %>
               </td>
               <td><%= link_to recipe.recipe_name, recipe_path(recipe), class:"book_3348" %></td>
+              <td><%= render "static_rate", recipe: recipe %></td>
             </tr>
           <% end %>
         </tbody>
@@ -31,4 +39,3 @@
 
     </div>
   </div>
-</div>
