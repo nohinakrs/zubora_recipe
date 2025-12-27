@@ -37,11 +37,17 @@ class Recipe < ApplicationRecord
     end
   end
 
+  #以下に星評価の平均値が入っている
   def average_rating
     return 0 if recipe_rates.count == 0
 
     (recipe_rates.sum(:rate).to_f / recipe_rates.count).round(1)
   end
+
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :star_count, -> { left_joins(:recipe_rates).group(:id).order("avg(recipe_rates.rate) desc") }
+
 
   private
 

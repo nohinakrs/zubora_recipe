@@ -3,6 +3,15 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.all.order(params[:sort])
+    if params[:latest]
+        @recipes = Recipe.latest
+      elsif params[:old]
+        @recipes = Recipe.old
+      elsif params[:star_count]
+        @recipes = Recipe.star_count
+      else
+        @recipes = Recipe.all
+    end
     @user = current_user
   end
 
