@@ -30,6 +30,33 @@
           <% end %>
         </tbody>
       </table>
+      <% if @recipe.user != current_user %>
+        <%= form_with model: [@recipe, RecipeRate.new] do |f| %>
+          <div class="form-group" id="star">
+            <%= f.label :rate %>
+            <%= f.hidden_field :rate, id: :review_star, class: 'form-control' %>
+            <div id="post_raty"></div>
+          </div>
+          <script>
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#post_raty');
+              if (elem == null) return;
+        
+              elem.innerHTML = ""
+              let opt = {  
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                scoreName: 'recipe_rate[rate]',
+              };
+              raty(elem, opt);
+            });
+          </script>
+          <div class="form-group">
+            <%= f.submit '評価する',class:"btn btn-success"%>
+          </div>
+        <% end %>
+      <% end %>
       <%= render "comments/index", recipe: @recipe %>
       <%= render "comments/form", recipe: @recipe, comment: @comment %>
     </div>

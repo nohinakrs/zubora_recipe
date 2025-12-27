@@ -4,7 +4,6 @@ class CreateRecipes < ActiveRecord::Migration[6.1]
       t.string  :recipe_name
       t.text    :recipe
       t.integer :user_id
-      t.float :rate
       t.timestamps
     end
   end

@@ -1,4 +1,3 @@
-
 <div id="rate_<%= recipe.id %>"></div>
 <script>
 $(document).on('turbolinks:load', function() {
@@ -10,7 +9,7 @@ $(document).on('turbolinks:load', function() {
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
-    score: "<%= recipe.rate %>",
+    score: "<%= recipe.average_rating %>",
     readOnly: true,
   };
   raty(elem, opt);
