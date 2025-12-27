@@ -1,35 +1,49 @@
   <div class="row">
     <div class="col-md-3">
     <%= render 'list', user: @user%>
+    
     </div>
 
     <div class="col-md-8 offset-md-1">
-      <h2>レシピ一覧</h2>
-      <table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th>レシピ名</th>
-            <th colspan="3"></th>
-            <th>タグ</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><%= image_tag @recipe.get_image(100, 100) %></tr>
-          <tr><%= @recipe.recipe_name %></tr>
-          <tr>
-                <% @recipe.tags.each do |tag| %>
-                  <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
-                <% end %>
-          </tr>
-          <tr><%= @recipe.recipe %></tr>
-          <tr>コメント数: <%= @recipe.comments.count %></td>
-          <td><%= render "static_rate", recipe: @recipe %></td>
-          <% if @recipe.user == current_user %>
-          <td><%= link_to "Edit", edit_recipe_path(@recipe), class:"btn btn-sm btn-success edit_book_3372" %></td>
-          <td><%= link_to "Destroy", recipe_path(@recipe), method: :delete, class:"btn btn-sm btn-danger destroy_book_3372", data: { confirm: "本当に消しますか?" } %></td>  
-          <% end %>
-        </tbody>
-      </table>
+      <h3><%= @recipe.recipe_name %></h3>
+      <%= render "static_rate", recipe: @recipe %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= image_tag @recipe.get_image(300, 300), style: "width:100%;" %>
+        </div>
+        <div class="col-md-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th width="50%">材料</th>
+                <th width="30%">分量</th>
+                <th width="20%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @recipe.gml_recipes.each do |gml| %>
+                <tr>
+                  <td><%= gml.material %></td>
+                  <td>
+                    <%= gml.number %>
+                    <%#= text_field_tag "gml_#{gml.id}", "", id: "gml_#{gml.id}", class: "gml-recipes" value: gml.number %>
+                  </td>
+                  <td><%= gml.unit %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <%= @recipe.recipe %>
+      <br>
+      <% if @recipe.user == current_user %>
+      <%= link_to "Edit", edit_recipe_path(@recipe), class:"btn btn-sm btn-success edit_book_3372" %>
+      <%= link_to "Destroy", recipe_path(@recipe), method: :delete, class:"btn btn-sm btn-danger destroy_book_3372", data: { confirm: "本当に消しますか?" } %>
+      <% end %>
+      <br>
+      コメント数: <%= @recipe.comments.count %>
       <% if @recipe.user != current_user %>
         <%= form_with model: [@recipe, RecipeRate.new] do |f| %>
           <div class="form-group" id="star">
@@ -61,3 +75,5 @@
       <%= render "comments/form", recipe: @recipe, comment: @comment %>
     </div>
   </div>
+
+

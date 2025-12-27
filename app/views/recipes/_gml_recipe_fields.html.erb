@@ -1,0 +1,19 @@
+<div class="nested-fields">
+    <div class='nested-fields'>
+        <div class="field">
+            <p></p>
+            <%= f.label :material, "材料名" %>
+            <%= f.text_field :material %>
+        </div>
+        <div class="field">
+            <%= f.label :number, "分量" %>
+            <%= f.text_field :number %>
+        </div>
+        <div class="field">
+            <%= f.label :unit, "単位" %>
+            <%= f.text_field :unit %>
+        </div>
+    <%= link_to_remove_association "上記の食材を削除する", f %>
+  </div>
+</div>
+

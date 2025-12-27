@@ -17,10 +17,12 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @recipe.gml_recipes.build
   end
 
   def edit
     @recipe = Recipe.find(params[:id])
+    
     if @recipe.user_id != current_user.id
     redirect_to user_path
     end
@@ -66,7 +68,7 @@ class RecipesController < ApplicationController
   private
   
   def recipe_params
-    params.require(:recipe).permit(:recipe_name, :recipe, :image, :tag_names)
+    params.require(:recipe).permit(:recipe_name, :recipe, :image, :tag_names, gml_recipes_attributes: [:id, :material, :number, :unit, :_destroy])
   end
 
   def is_matching_login_user

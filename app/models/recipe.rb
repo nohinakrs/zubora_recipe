@@ -7,6 +7,8 @@ class Recipe < ApplicationRecord
   has_many :recipe_tags, dependent: :destroy
   has_many :tags, through: :recipe_tags
   has_many :recipe_rates, dependent: :destroy
+  has_many :gml_recipes
+  accepts_nested_attributes_for :gml_recipes, reject_if: proc { |attributes| attributes[:material].blank? && attributes[:unit].blank? }, allow_destroy: true
 
   validates :recipe_name, presence: true, length: { in: 1..20 }
   validates :recipe, presence: true, length: { in: 100..3000 }
