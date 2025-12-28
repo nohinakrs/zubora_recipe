@@ -19,9 +19,9 @@
 - 商品の分量の変更や、分量が変動するレシピなどの要因により、レシピ内容を調整したい時
 
 ## 設計書
-ER図：https://app.diagrams.net/#G1ehdpmmTaCLjQk0N25Wf8BVkDYvFxy5v9#%7B%22pageId%22%3A%22LkA-50vI9zVlM_wPANrl%22%7D
-テーブル定義書：https://docs.google.com/spreadsheets/d/1I6o37iN3u0sa5fdR83GoI1g4YL9Uk3trT9PtR-J_O2M/edit?gid=1044500859#gid=1044500859
-アプリケーション詳細設計書：https://docs.google.com/spreadsheets/d/1HKaSgQR4oPWuUwYRqnLpxHxfQURDBCBw6_tcPQ68e1M/edit?gid=549108681#gid=549108681
+- ER図：https://app.diagrams.net/#G1ehdpmmTaCLjQk0N25Wf8BVkDYvFxy5v9#%7B%22pageId%22%3A%22LkA-50vI9zVlM_wPANrl%22%7D
+- テーブル定義書：https://docs.google.com/spreadsheets/d/1I6o37iN3u0sa5fdR83GoI1g4YL9Uk3trT9PtR-J_O2M/edit?gid=1044500859#gid=1044500859
+- アプリケーション詳細設計書：https://docs.google.com/spreadsheets/d/1HKaSgQR4oPWuUwYRqnLpxHxfQURDBCBw6_tcPQ68e1M/edit?gid=549108681#gid=549108681
 ​
 ## 開発環境
 - OS：Windows
