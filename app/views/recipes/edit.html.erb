@@ -26,11 +26,18 @@
         <p>タグ</p>
         <%= f.text_field :tag_names, class: 'form-control recipe_tag_name' %><br>
       </div>
+      <div id='gml_recipes'>
+        <%= f.fields_for :gml_recipes do |form| %>
+          <%= render 'gml_recipe_fields', f: form %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association '食材を追加する', f, :gml_recipes, class:"btn btn-success" %>
+        </div>
+      </div>
       <div class="form-group">
         <p>レシピ内容</p>
         <%= f.text_field :recipe, class:"form-control recipe_body" %>
       </div>
-
       <div class="form-group">
         <%= f.submit "レシピ更新", class:"btn btn-success" %>
       </div>
