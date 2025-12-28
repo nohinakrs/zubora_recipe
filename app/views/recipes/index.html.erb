@@ -1,41 +1,40 @@
-
-  <div class="row">
-    <div class="col-md-3">
-      <%= render 'list', user: @user%>
-    </div>
-    <div class="col-md-8 offset-md-1">
-
-      <table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th colspan="1"></th>
-            <th>タグ</th>
-            <th>レシピ名</th>
-          </tr>
-          <tr>
-            <%= link_to '新しい順  ', recipes_path(latest: "true") %>
-            <%= link_to '古い順  ', recipes_path(old: "true") %>
-            <%= link_to '評価の高い順', recipes_path(star_count: "true") %>
-          </tr>
-        </thead>
-        <tbody>
-          <% @recipes.each do |recipe| %>
-            <tr>
-              <td><%= link_to user_path(recipe.user) do %>
-                <%= image_tag recipe.get_image(100, 100) %>
-                <% end %>
-              </td>
-              <td>
-                <% recipe.tags.each do |tag| %>
-                  <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
-                <% end %>
-              </td>
-              <td><%= link_to recipe.recipe_name, recipe_path(recipe), class:"book_3348" %></td>
-              <td><%= render "static_rate", recipe: recipe %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-    </div>
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'list', user: @user%>
   </div>
+  <div class="col-md-8 offset-md-1">
+
+    <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th colspan="1"></th>
+          <th>タグ</th>
+          <th>レシピ名</th>
+        </tr>
+        <tr>
+          <%= link_to '新しい順  ', recipes_path(latest: "true") %>
+          <%= link_to '古い順  ', recipes_path(old: "true") %>
+          <%= link_to '評価の高い順', recipes_path(star_count: "true") %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recipes.each do |recipe| %>
+          <tr>
+            <td><%= link_to user_path(recipe.user) do %>
+              <%= image_tag recipe.get_image(100, 100) %>
+              <% end %>
+            </td>
+            <td>
+              <% recipe.tags.each do |tag| %>
+                <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
+              <% end %>
+            </td>
+            <td><%= link_to recipe.recipe_name, recipe_path(recipe), class:"book_3348" %></td>
+            <td><%= render "static_rate", recipe: recipe %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>

@@ -1,7 +1,12 @@
-<% if @model == 'user' %>
-	<h3>Users search for "<%= @content %>"</h3>
-  <%= render 'users/index', users: @records %>
-<% elsif @model == 'recipe' || @model == 'tag' %>
-	<h3>Recipes search for "<%= @content %>"</h3>
-  <%= render 'recipes/index', recipes: @records %>
-<% end %>
+<div class="row">
+  <div class="col-md-8 offset-md-1">
+    <h2>検索</h2>
+    <% if @model == 'user' %>
+      <h3>ユーザー検索 "<%= @content %>" の結果</h3>
+      <%= render 'users/index', users: @records %>
+    <% elsif @model == 'recipe' || @model == 'tag' %>
+      <h3>レシピ名orタグ検索 "<%= @content %> の結果"</h3>
+      <%= render 'recipes/index', recipes: @records %>
+    <% end %>
+  </div>
+</div>
