@@ -24,3 +24,20 @@ window.raty = function(elem,opt) {
     raty.init();
     return raty;
 }
+
+document.addEventListener("turbolinks:load", () => {
+    const gmlRecipes = document.querySelectorAll('.gml-recipes')
+    const state = [...gmlRecipes].map( o => ({ id: o.id, value: parseFloat(o.value) }) )
+    gmlRecipes.forEach( gml => {
+        gml.addEventListener('change', e => {
+            const changedGmlId = gml.id
+            const changedGmlValue = gml.value
+            const changedForm = state.find( o => o.id == changedGmlId )
+            const coef = changedGmlValue / changedForm.value
+            const changedState = state.map( o => ({ id: o.id, value: o.value * coef }))
+            gmlRecipes.forEach( (o, i) => {
+                o.value = changedState[i].value.toFixed(1)
+            })
+        })
+    })
+})

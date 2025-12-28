@@ -25,8 +25,8 @@
                 <tr>
                   <td><%= gml.material %></td>
                   <td>
-                    <%= gml.number %>
-                    <%#= text_field_tag "gml_#{gml.id}", "", id: "gml_#{gml.id}", class: "gml-recipes" value: gml.number %>
+                    <%#= gml.number %>
+                    <%= text_field_tag "gml_#{gml.id}", "", id: "gml_#{gml.id}", class: "gml-recipes", value: gml.number %>
                   </td>
                   <td><%= gml.unit %></td>
                 </tr>
